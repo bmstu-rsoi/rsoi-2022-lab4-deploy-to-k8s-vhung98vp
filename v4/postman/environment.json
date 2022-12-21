@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "baseUrl",
-			"value": "",
+			"value": "https://F1A5A0913871218FD000D4C2B5E8AB84.sk1.ap-northeast-1.eks.amazonaws.com",
 			"enabled": true
 		}
 	],
