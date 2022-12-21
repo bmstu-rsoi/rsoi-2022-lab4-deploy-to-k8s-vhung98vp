@@ -34,8 +34,8 @@ jobs:
 
       - name: Create EKS config
         run: |
-          mkdir ${HOME}/.kube
-          echo $EKS_CONFIG | base64 --decode > ${HOME}/.kube/config
+          mkdir $HOME/.kube
+          echo $EKS_CONFIG | base64 --decode > $HOME/.kube/config
 
       - name: Deploy to EKS
         run: |
