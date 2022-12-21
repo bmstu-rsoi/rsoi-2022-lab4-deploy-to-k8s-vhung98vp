@@ -15,7 +15,8 @@ services:
 
 # TODO добавить сервисы
   gateway:
-    image: gateway
+    image: vhung98vp/gateway:1.0
+    container_name: gateway
     build: ./gateway/
     ports:
       - "8080:8080"
@@ -29,7 +30,8 @@ services:
       RESERVATION_URL: "http://reservation:8070"
       
   reservation:
-    image: reservation
+    image: vhung98vp/reservation:1.0
+    container_name: reservation
     build: ./reservation/
     ports:
       - "8070:8070"
@@ -40,7 +42,8 @@ services:
       GATEWAY_URL: "http://gateway"      
 
   library:
-    image: library
+    image: vhung98vp/library:1.0
+    container_name: library
     build: ./library/
     ports:
       - "8060:8060"
@@ -50,7 +53,8 @@ services:
       DATABASE_URL: "postgres://postgres:postgres@postgres:5432/libraries"
       
   rating:
-    image: rating
+    image: vhung98vp/rating:1.0
+    container_name: rating
     build: ./rating/
     ports:
       - "8050:8050"
