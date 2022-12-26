@@ -32,11 +32,9 @@ jobs:
           docker-compose push
 
       - name: Create K8S config
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.K8S_CONFIG }}
-        with:
-          args: get pods
+        run: |
+          mkdir $HOME/.kube
+          echo ${{ secrets.K8S_CONFIG }} | base64 -d > $HOME/.kube/config
 
       - name: Deploy to K8S
         run: |
