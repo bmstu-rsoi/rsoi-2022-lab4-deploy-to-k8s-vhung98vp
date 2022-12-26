@@ -6,7 +6,7 @@ on:
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  EKS_CONFIG: ${{ secrets.EKS_CONFIG }}
+  K8S_CONFIG: ${{ secrets.K8S_CONFIG }}
 
 jobs:
   build:
@@ -32,14 +32,14 @@ jobs:
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker-compose push
 
-      - name: Create EKS config
+      - name: Create K8S config
         run: |
-          mkdir $HOME/.kube
-          echo $EKS_CONFIG | base64 --decode > $HOME/.kube/config
+          export config=$K8S_CONFIG
+          echo $config | base64 -d > $HOME/.kube/config
 
-      - name: Deploy to EKS
+      - name: Deploy to K8S
         run: |
-          kubectl apply -f k8s.yaml
+          helm delete services && helm install services k8s/services-chart
           sleep 60
       
       - name: Run API Tests

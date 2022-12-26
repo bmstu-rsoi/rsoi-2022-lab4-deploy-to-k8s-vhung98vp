@@ -1,7 +1,7 @@
 const axios = require('axios');
 const Reservation = require('../models/reservation');
 const PORT = process.env.PORT || 8080;
-const GATEWAY_URL = (process.env.GATEWAY_URL || 'http://localhost') + ':' + PORT
+const GATEWAY_URL = (process.env.GATEWAY_URL || 'http://localhost:' + PORT)
 
 class ReservationController {
     static getReservationsByUsername = async(req, res, next) => {
